@@ -1,0 +1,31 @@
+<h2>Share a News</h2>
+
+<form [formGroup]="form" (submit)="process()">
+  <table>
+    <tr>
+      <td>Title:</td>
+      <td> <input type="text" formControlName="title"> </td>
+    </tr>
+    <tr>
+      <td>Photo:</td>
+      <td><input type="file" formControlName="photo" accept="image/*" (change)="onFileSelected($event)"></td>
+    </tr>
+    <tr>
+      <td>Description:</td>
+      <td> <input type="text" formControlName="description"> </td>
+    </tr>
+    <tr>
+        <td>Tags:</td>
+        <td>
+            <input #tagsInput type="text" formControlName="tags">
+            <button type="button" id="tags-addon" (click)="addTag(tagsInput.value)">+</button>
+          </td>
+        <div><button type="button" *ngFor="let tag of tags; let i = index" (click)="removeTag(i)">{{ tag }}</button></div>
+      </tr>
+      <td></td>
+    <tr>
+        <button type="button" [routerLink]="['/']">Back</button>
+        <button type="submit">Post News</button>
+    </tr>
+  </table>
+</form>

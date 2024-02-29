@@ -1,0 +1,19 @@
+<h1>List of News with #{{ tag }}</h1>
+<button type="button" (click)="goBack()">Back</button>
+<button type="button" [routerLink]="['/share']">Post News</button>
+<ng-container *ngIf="news">
+    <div *ngFor="let n of news">
+        <img class="card-img-top" [src]="'https://assets.shaunwah.dev/' + n.photo">
+        <div>
+            <h5>{{ n.title }}</h5>
+            <p class="card-text">
+                {{ n.description }}<br><br>
+                Published Date: {{ n.postDate | date: "medium" }}
+            </p>
+            <ng-container *ngIf="n.tags">
+                Tag(s): <span *ngFor="let tag of n.tags" class="badge rounded-pill text-bg-secondary me-1">{{ tag
+                    }}</span>
+            </ng-container>
+        </div>
+    </div>
+</ng-container>
